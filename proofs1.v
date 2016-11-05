@@ -71,3 +71,16 @@ reflexivity.
 Qed.
 
 
+
+Theorem mult_S_1 : forall n m : nat,
+m = S n ->
+m * ((S O) + n) = m * m.
+Proof.
+intros n m.
+intros H.
+rewrite plus_1_1.
+rewrite <- H.
+reflexivity.
+Qed.
+
+
