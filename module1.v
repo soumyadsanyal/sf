@@ -1,5 +1,3 @@
-Module Playground1.
-
 Inductive nat : Type :=
 | O : nat
 | S : nat -> nat.
@@ -32,16 +30,6 @@ end.
 
 Definition oddb (n:nat) : bool := negb (evenb n).
 
-Example test_oddb1: oddb 1 = true.
-Proof. simpl. reflexivity. Qed.
-Example test_oddb2: oddb 4 = false.
-Proof. simpl. reflexivity. Qed.
-
-
-End Playground1.
-
-Module Playground2.
-
 Fixpoint plus (n:nat) (m:nat) : nat :=
 match n with
 | O => m
@@ -62,8 +50,6 @@ match n, m with
 | S n, S m => minus n m
 end.
 
-End Playground2.
-
 Fixpoint exp (base power :nat) : nat :=
 match power with
 | O => S O
@@ -77,7 +63,42 @@ match n with
 | S n' => mult n (factorial n')
 end.
 
+Notation "x + y" := (plus x y)
+                       (at level 50, left associativity)
+                       : nat_scope.
+
+Notation "x - y" := (minus x y)
+                        (at level 50,left associativity)
+                        : nat_scope.
+
+Notation "x * y" := (mult x y)
+                        (at level 40,left associativity)
+                        : nat_scope.
 
 
-End Playground2.
+Fixpoint beq_nat (n m : nat) : bool :=
+match n with
+| O => match m with 
+  | O => true
+  | S m' => false
+end
+| S n' => match m with
+  | O => false
+  | S m' => (beq_nat n' m')
+end
+end.
+
+Fixpoint blt_nat (n m : nat) : bool :=
+match n with
+| O => match m with
+  | O => false
+  | S _ => true
+end
+| S n' => match m with
+  | O => false
+  | S m' => blt_nat n' m'
+end
+end.
+
+
 
