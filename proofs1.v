@@ -83,4 +83,56 @@ rewrite <- H.
 reflexivity.
 Qed.
 
+Theorem plus_1_neq_0_firsttry : forall n : nat,
+beq_nat (n + (S O)) O = false.
+Proof.
+intros n.
+destruct n as [| n'].
+reflexivity.
+reflexivity.
+Qed.
+
+Theorem plus_1_neq_0_firsttry' : forall n : nat,
+beq_nat (n + (S O)) O = false.
+Proof.
+intros n.
+destruct n as [| n'].
+- simpl.
+- reflexivity.
+- simpl.
+- reflexivity.
+Qed.
+
+Theorem negb_involutive : forall b : bool,
+(negb (negb b)) = b.
+Proof.
+intro b.
+simpl.
+destruct b.
+- simpl.
+- reflexivity.
+- simpl.
+- reflexivity.
+Qed.
+
+Theorem andb_commutative : forall b c: bool, 
+andb b c = andb c b.
+Proof.
+intros b c.
+destruct b.
+destruct c.
+- simpl.
+- reflexivity.
+- simpl.
+- reflexivity.
+- destruct c.
+- simpl.
+- reflexivity.
+- simpl.
+- reflexivity.
+Qed.
+
+
+
+
 
