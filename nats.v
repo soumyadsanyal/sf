@@ -100,5 +100,24 @@ end
 end
 end.
 
+Inductive bin : Type :=
+| Z : bin
+| T : bin -> bin
+| T' : bin -> bin.
+
+Fixpoint incr (n : bin) : bin :=
+match n with
+| Z => T' Z
+| T n' => T' n'
+| T' n' => T (incr n')
+end.
+
+Fixpoint bin_to_nat (n: bin) : nat :=
+match n with 
+| Z => O
+| P n' => succ (bin_to_nat n')
+| T n' => succ (succ (bin_to_nat n'))
+end.
+
 
 

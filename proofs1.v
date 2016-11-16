@@ -220,6 +220,51 @@ intros n.
 reflexivity. }
 Qed.
 
+Theorem identity_fn_applied_twice : forall (f : bool -> bool), 
+(forall (x : bool), f x = x) -> 
+forall (b : bool),
+f (f b) = b.
+Proof.
+intros f.
+intros H.
+intros b0.
+rewrite H.
+rewrite H.
+reflexivity.
+Qed.
+
+Theorem andb_eq_orb: 
+forall (b c : bool),
+(andb b c) = (orb b c) -> 
+b=c.
+Proof.
+intros b0.
+intros c.
+destruct b0.
+destruct c.
+simpl.
+intros H.
+reflexivity.
+
+simpl.
+intros H1.
+rewrite H1.
+reflexivity.
+
+destruct c.
+simpl.
+intros H2.
+rewrite H2.
+reflexivity.
+
+simpl.
+intros H3.
+reflexivity.
+
+Qed.
+
+
+
 
 
 
