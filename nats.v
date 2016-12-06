@@ -112,11 +112,20 @@ match n with
 | T' n' => T (incr n')
 end.
 
+Fixpoint bin_pred (n: bin) : bin :=
+match n with
+| Z => Z
+| T Z => Z
+| T' Z => Z
+| T' n' => T n'
+| T n' => T' (bin_pred n')
+end.
+
 Fixpoint bin_to_nat (n: bin) : nat :=
 match n with 
 | Z => O
-| P n' => succ (bin_to_nat n')
-| T n' => succ (succ (bin_to_nat n'))
+| T' n' => succ (bin_to_nat (T n'))
+| T n' => succ (bin_to_nat (T' (bin_pred n')))
 end.
 
 

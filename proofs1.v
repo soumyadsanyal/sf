@@ -264,8 +264,3 @@ reflexivity.
 Qed.
 
 
-
-
-
-
-
